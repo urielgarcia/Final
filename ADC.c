@@ -113,21 +113,32 @@ int Calibrate(int Left, int Middle, int Right, int loop){
         OC1RS = Speed; // // left motor
         OC2RS = Speed; // //right motor
 
-        if(OC1RS > 512   && OC2RS > 512){ // if it is going too fast
-            OC1RS = 400;
-            OC2RS = 400;
-        }
+//        if(OC1RS > 512   && OC2RS > 512){ // if it is going too fast
+//            OC1RS = 400;
+//            OC2RS = 400;
+//        }
     }
 
     else if(Left < Black_Left && Middle<=Black_Middle && Right > Black_Right && loop==0){ // if right sensor is off path
-       OC1RS = Pause;
-        OC2RS = Speed;
+       OC1RS = Speed/5; // left motor
+        OC2RS = Speed; // right motor
     }
 
     else if(Left > Black_Left && Middle<=Black_Middle && Right < Black_Right && loop==0){ // if left sensor is off path
-       OC1RS = Speed;
-       OC2RS = Pause;
+       OC1RS = Speed; // left motor
+       OC2RS = Speed/5; // right motor
     }
+
+     else if(Left < Black_Left && Middle>=Black_Middle && Right > Black_Right && loop==0){ // if right sensor is off path
+       OC1RS = Pause; // left motor
+        OC2RS = Speed; // right motor
+    }
+
+    else if(Left > Black_Left && Middle>=Black_Middle && Right < Black_Right && loop==0){ // if left sensor is off path
+       OC1RS = Speed; // left motor
+       OC2RS = Pause; // right motor
+    }
+
 
 //    else if (Left>Black && Center> Black && Right >Black && loop==0){
 //        loop=1;
@@ -141,7 +152,4 @@ int Calibrate(int Left, int Middle, int Right, int loop){
 
 
     return(loop);
-
-    
-
 }
