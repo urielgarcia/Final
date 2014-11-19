@@ -113,19 +113,20 @@ int main(void)
        
               LCDClear();
          LCDMoveCursor(1,0);
+         LCDPrintChar('3');
 
-         sprintf(ADV,"%4.0d",Left);
-         LCDPrintString(ADV);
-         
-         LCDMoveCursor(1,4);
-         sprintf(ADV2,"%4.0d",Right);
-         LCDPrintString(ADV2);
+//         sprintf(ADV,"%4.0d",Left);
+//         LCDPrintString(ADV);
+//
+//         LCDMoveCursor(1,4);
+//         sprintf(ADV2,"%4.0d",Right);
+//         LCDPrintString(ADV2);
+//
+//         LCDMoveCursor(0,0);
+//         sprintf(ADV3,"%4.0d",Middle);
+//         LCDPrintString(ADV3);
 
-         LCDMoveCursor(0,0);
-         sprintf(ADV3,"%4.0d",Middle);
-         LCDPrintString(ADV3);
-
-       //loop= Calibrate(Left,Center, Right,loop);
+//       loop= Calibrate(Left,Middle, Right,loop);
 //        while (loop==1){
 //        Left = ADCLeft();
 //        Right = ADCRight();

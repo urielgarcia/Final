@@ -4,9 +4,9 @@
 #include "ADC.h"
 #include "LCD.h"
 // ******************************************************************************************* //
-#define Black_Left 230
-#define Black_Middle 230 // black threshold, upper limit
-#define Black_Right 230
+#define Black_Left 300
+#define Black_Middle 250 // black threshold, upper limit
+#define Black_Right 300
 
  #define Speed 425 // speed off motors at "full" speed
 #define Pause 0 // speed for stop
@@ -120,13 +120,13 @@ int Calibrate(int Left, int Middle, int Right, int loop){
     }
 
     else if(Left < Black_Left && Middle<=Black_Middle && Right > Black_Right && loop==0){ // if right sensor is off path
-       OC1RS = Speed/5; // left motor
+       OC1RS = Speed/2; // left motor
         OC2RS = Speed; // right motor
     }
 
     else if(Left > Black_Left && Middle<=Black_Middle && Right < Black_Right && loop==0){ // if left sensor is off path
        OC1RS = Speed; // left motor
-       OC2RS = Speed/5; // right motor
+       OC2RS = Speed/2; // right motor
     }
 
      else if(Left < Black_Left && Middle>=Black_Middle && Right > Black_Right && loop==0){ // if right sensor is off path
