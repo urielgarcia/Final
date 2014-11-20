@@ -84,12 +84,12 @@ int main(void)
     char ADV2[4];//used to print the duty cycles
     char ADV3[4];
 
-    	PR1 = 57;//1 micro second delay
-	TMR1 = 0;//resets timer 1
+    	PR4 = 57;//1 micro second delay
+	TMR4 = 0;//resets timer 1
 	IFS0bits.T1IF = 0;
 	IEC0bits.T1IE = 1;
-	T1CONbits.TCKPS = 3;
-	T1CONbits.TON = 1;
+	T4CONbits.TCKPS = 3;
+	T4CONbits.TON = 1;
 
    
     
@@ -100,7 +100,7 @@ int main(void)
 
    TRISBbits.TRISB5 = 1;
    while(PORTBbits.RB5 == 1);
-   
+
    OC1RS = Speed;
    OC2RS = Speed;
 
@@ -124,10 +124,10 @@ int main(void)
        
               LCDClear();
          LCDMoveCursor(1,0);
-
+//
          sprintf(ADV,"%4.0d",Left);
          LCDPrintString(ADV);
-         
+
          LCDMoveCursor(1,4);
          sprintf(ADV2,"%4.0d",Right);
          LCDPrintString(ADV2);
@@ -136,7 +136,7 @@ int main(void)
          sprintf(ADV3,"%4.0d",Middle);
          LCDPrintString(ADV3);
 
-        //Calibrate(Left,Middle, Right);
+        Calibrate(Left,Middle, Right);
 
    }
 }

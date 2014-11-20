@@ -4,9 +4,9 @@
 #include "ADC.h"
 #include "LCD.h"
 // ******************************************************************************************* //
-#define Black_Left 380
-#define Black_Middle 300 // black threshold, upper limit
-#define Black_Right 310
+#define Black_Left 385
+#define Black_Middle 310 // black threshold, upper limit
+#define Black_Right 315
 
  #define Speed 400 // speed of motors at "full" speed
 #define Pause 10 // speed for stop
@@ -113,8 +113,8 @@ void Calibrate(int Left, int Middle, int Right){
     if(Left <= Black_Left && Middle<=Black_Middle && Right <= Black_Right){ // if on the black path
         OC1RS = Speed; // // left motor
         OC2RS = Speed; // //right motor
-        T1CONbits.TON =0;
-        TMR1=0;
+        T4CONbits.TON =0;
+        TMR4=0;
         cnt = 0;
         RPOR4bits.RP8R= 19;//input 1 red left motor
         RPOR1bits.RP2R = 0;//input 2 black left motor
@@ -127,40 +127,40 @@ void Calibrate(int Left, int Middle, int Right){
     }
 
     else if(Left < Black_Left && Middle<=Black_Middle && Right > Black_Right ){ // if right sensor is off path
-       OC1RS = OC1RS - 10; // left motor
+       OC1RS = OC1RS - 12; // left motor
         OC2RS = Speed; // right motor
-        T1CONbits.TON =0;
-        TMR1=0;
+        T4CONbits.TON =0;
+        TMR4=0;
         cnt = 0;
     }
 
     else if(Left > Black_Left && Middle<=Black_Middle && Right < Black_Right ){ // if left sensor is off path
        OC1RS = Speed; // left motor
-       OC2RS = OC2RS - 10; // right motor
-       T1CONbits.TON =0;
-       TMR1=0;
+       OC2RS = OC2RS - 12; // right motor
+       T4CONbits.TON =0;
+       TMR4=0;
        cnt =0;
     }
 
      else if(Left < Black_Left && Middle>=Black_Middle && Right > Black_Right ){ // if right sensor is off path
        OC1RS = Pause; // left motor
         OC2RS = Speed; // right motor
-        T1CONbits.TON =0;
-        TMR1=0;
+        T4CONbits.TON =0;
+        TMR4=0;
         cnt = 0;
     }
 
     else if(Left > Black_Left && Middle>=Black_Middle && Right < Black_Right){ // if left sensor is off path
        OC1RS = Speed; // left motor
        OC2RS = Pause; // right motor
-       T1CONbits.TON =0;
-       TMR1=0;
+       T4CONbits.TON =0;
+       TMR4=0;
        cnt =0;
     }
 
 
     else if (Left>Black_Left && Middle> Black_Middle && Right >Black_Right){
-        T1CONbits.TON = 1;
+        T4CONbits.TON = 1;
         
     }
 
