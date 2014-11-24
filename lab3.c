@@ -51,14 +51,27 @@ pin 4 is RP 0 connected to pin 15 on H-bridge (input 3) controls counter-clockwi
 pin 5 is RP 1 connected to pin 10 on H-bridge  (input 4)controls clockwise for right motor
 ********************************************************************/
 // ******************************************************************************************* //
+<<<<<<< HEAD
  #define Black 150
  #define Speed 420 // speed off motors at "full" speed
 #define Pause 0 // speed for stop
 volatile unsigned int state;//variable used to assign direction
+=======
+ #define Black_Left 300
+#define Black_Middle 250 // black threshold, upper limit
+#define Black_Right 300
+ #define Speed 420 // speed off motors at "full" speed
+#define Pause 0 // speed for stop
+//volatile unsigned int state;//variable used to assign direction
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
 volatile int Left;
 volatile int Right;
 volatile int Middle;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
 int main(void)
 {
     TRISBbits.TRISB5=1;//enables the SW1 as input
@@ -68,9 +81,15 @@ int main(void)
 //    IEC1bits.CNIE = 1;//sets flag down
 
 
+<<<<<<< HEAD
     int i=0;//used for printing delay
     int loop=0;
     state=0;//intializes in iddle state before going forward
+=======
+   
+ 
+//    state=0;//intializes in iddle state before going forward
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
      Left = 0;
      Right = 0;
      Middle=0;
@@ -80,6 +99,17 @@ int main(void)
     char ADV[4];//used to print the ADC value
     char ADV2[4];//used to print the duty cycles
     char ADV3[4];
+<<<<<<< HEAD
+=======
+
+    	PR4 = 57;//1 micro second delay
+	TMR4 = 0;//resets timer 1
+	IFS0bits.T1IF = 0;
+	IEC0bits.T1IE = 1;
+	T4CONbits.TCKPS = 3;
+	T4CONbits.TON = 1;
+
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
    
     
 //initializes LCD, the ADC and the PWM
@@ -89,7 +119,11 @@ int main(void)
 
    TRISBbits.TRISB5 = 1;
    while(PORTBbits.RB5 == 1);
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
    OC1RS = Speed;
    OC2RS = Speed;
 
@@ -113,6 +147,7 @@ int main(void)
        
               LCDClear();
          LCDMoveCursor(1,0);
+<<<<<<< HEAD
          LCDPrintChar('3');
 
 //         sprintf(ADV,"%4.0d",Left);
@@ -197,6 +232,22 @@ int main(void)
 //
 //
 //
+=======
+//
+         sprintf(ADV,"%4.0d",Left);
+         LCDPrintString(ADV);
+
+         LCDMoveCursor(1,4);
+         sprintf(ADV2,"%4.0d",Right);
+         LCDPrintString(ADV2);
+
+         LCDMoveCursor(0,0);
+         sprintf(ADV3,"%4.0d",Middle);
+         LCDPrintString(ADV3);
+
+        Calibrate(Left,Middle, Right);
+
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
    }
 }
 //    void __attribute__((interrupt, auto_psv)) _CNInterrupt(void) {
@@ -208,3 +259,9 @@ int main(void)
 //    }
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 7bdd094b2ef4474fc567bb37dd847e22150b54b8
